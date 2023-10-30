@@ -7,32 +7,15 @@ from fastapi.responses import HTMLResponse, StreamingResponse
 # from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-# from camera_single import Camera
-from camera_multi import Camera
+#Simple page for camera testing(if you have camera)
+from test import testapi
+#api for changing masks
+from masks import Masks
 
 app = FastAPI()
 
-# app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
-
-@app.get("/", response_class=HTMLResponse)
-async def index(request: Request):
-   return templates.TemplateResponse('index.html', {"request": request})
-
-def gen(camera):
-    """Video streaming generator function."""
-    while True:
-        frame = camera.get_frame()
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-
-
-@app.get('/video_feed', response_class=HTMLResponse)
-async def video_feed():
-    """Video streaming route. Put this in the src attribute of an img tag."""
-    return  StreamingResponse(gen(Camera()),
-                    media_type='multipart/x-mixed-replace; boundary=frame')
-
+app.mount('/test',testapi)
+#app.mount('/mask',Masks.maskapi)
 
 if __name__ == "__main__":
     print('stop: ctrl+c')
