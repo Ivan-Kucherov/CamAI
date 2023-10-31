@@ -47,7 +47,6 @@ def read_csv(file):
         csv_reader = csv.reader(csv_file, delimiter=',')
         line_count = 0
 
-        
         for row in csv_reader:
             if(line_count != 0):
                 ids.append(int(row[0]))

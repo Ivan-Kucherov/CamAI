@@ -4,10 +4,10 @@ from utils import fps_scale, colorBackgroundText, FONT, read_csv
 from medipipe_masks import mediapipe_main
 
 def main():
-    cap = cv2.VideoCapture('D:/machine_learning1/test_videos/video_fr11.mp4')
+    cap = cv2.VideoCapture('D:/machine_learning1/CamAI/test_videos/video_fr11.mp4')
 
-    mask_img = cv2.imread('D:/machine_learning1/masks/glasses2.png', cv2.IMREAD_UNCHANGED)
-    mask_csv = read_csv('D:/machine_learning1/masks/11112.csv')
+    mask_img = cv2.imread('D:/machine_learning1/CamAI/masks/glasses2.png', cv2.IMREAD_UNCHANGED)
+    mask_csv = read_csv('D:/machine_learning1/CamAI/masks/11112.csv')
 
 
     p_time = 0

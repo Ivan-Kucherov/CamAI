@@ -1,7 +1,6 @@
 import cv2
 import numpy as np
 import mediapipe as mp
-from utils import colorBackgroundText, FONT, read_csv
 import time
 
 
@@ -40,6 +39,7 @@ def lips_ratio(landmarks):
     return head_lips, color
 
 
+# Функция для деформации и наложения маски
 def warp_image(img, landmarks_coord, w, h, im_src, mask_coord):
 
     pts_src = np.array(mask_coord, dtype=float)
@@ -67,7 +67,7 @@ def warp_image(img, landmarks_coord, w, h, im_src, mask_coord):
 
     return dst
 
-
+# Функция для обработки координат маски
 def mask_overlay(img, img_landmarks, w, h, mask_img, mask_csv):
 
     ids, mask_coordinates = mask_csv
@@ -82,6 +82,7 @@ def mask_overlay(img, img_landmarks, w, h, mask_img, mask_csv):
     output = warp_image(img, landmarks_coordinates, w, h, mask_img, mask_coordinates)
 
     return output
+
 
 
 
@@ -107,21 +108,6 @@ def mediapipe_main(img, mask_img, mask_csv, w, h, draw_all = False):
 
 
             landmarks = results.multi_face_landmarks[0].landmark
-
-
-            # Глаза
-            # cv2.polylines(img, [np.array([mesh_coords[p] for p in LEFT_EYE], dtype=np.int32)], True, (0,255,0), 1, cv2.LINE_AA)
-            # cv2.polylines(img, [np.array([mesh_coords[p] for p in RIGHT_EYE], dtype=np.int32)], True, (0,255,0), 1, cv2.LINE_AA)
-
-
-            # Губы
-            # pos_lips, color_lips = lips_ratio(landmarks)
-
-            # [cv2.circle(img, mesh_coords[p], 1, (0, 255, 0), -1, cv2.LINE_AA) for p in LIPS]
-
-            # scale_lips = lips_scale(w, h)
-    
-            # colorBackgroundText(img, f"LIPS: {pos_lips:.3f}", FONT, scale_lips[0], (scale_lips[1], scale_lips[2]), scale_lips[3], color_lips[0], color_lips[1], scale_lips[4], scale_lips[4])
 
 
         img = mask_overlay(img, landmarks, w, h, mask_img, mask_csv)
