@@ -6,7 +6,7 @@ import pandas as pd
 
 def main():
     cap = cv2.VideoCapture('test_videos/video_fr11.mp4')
-    name_mask = "batman_1"
+    name_mask = "clown"
     mask_img = cv2.imread(f'masks/{name_mask}.png', cv2.IMREAD_UNCHANGED)
     mask_csv = read_csv(f'masks/{name_mask}.csv')
     #Альфа канал
