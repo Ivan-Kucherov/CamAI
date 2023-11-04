@@ -8,10 +8,10 @@ from fastapi.responses import HTMLResponse, StreamingResponse
 from fastapi.templating import Jinja2Templates
 
 # from camera_single import Camera
-from camera_multi import Camera
+from .camera_multi import Camera
 
 testapp = FastAPI()
-
+testapp.test = "00"
 # app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
@@ -32,3 +32,6 @@ async def video_feed():
     """Video streaming route. Put this in the src attribute of an img tag."""
     return  StreamingResponse(gen(Camera()),
                     media_type='multipart/x-mixed-replace; boundary=frame')
+@testapp.get('/')
+async def api():
+    return "True"

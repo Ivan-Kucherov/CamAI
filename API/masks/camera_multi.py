@@ -1,15 +1,20 @@
 # camera_multi.py
 
+import json
 import cv2
-from base_camera import BaseCamera
+from test.base_camera import BaseCamera
+from utils import fps_scale, colorBackgroundText, FONT, read_csv
 
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
-
+mask_img = cv2.imread('./masks/glasses2.png', cv2.IMREAD_UNCHANGED)
+mask_csv = read_csv('./masks/glasses2.csv')
 
 class Camera(BaseCamera):
-    def __init__(self):
+    def __init__(self,mask_name):
         super().__init__()
-
+    json
+    mask_img = cv2.imread('./masks/glasses2.png', cv2.IMREAD_UNCHANGED)
+    mask_csv = read_csv('./masks/glasses2.csv')
     # over-wride of BaseCamera class frames method
     @staticmethod
     def frames():
