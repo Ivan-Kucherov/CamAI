@@ -1,0 +1,8 @@
+fastapi==0.111.0
+greenlet==3.0.1
+mediapipe==0.10.7
+numpy==2.0.0
+opencv_contrib_python==4.8.1.78
+opencv_python==4.8.1.78
+thread==2.0.3
+uvicorn==0.30.1
